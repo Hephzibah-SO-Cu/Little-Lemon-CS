@@ -4,12 +4,17 @@ function About() {
   return (
     <section className="about">
       <h2>About Us</h2>
-      <p>Lorem ipsum...</p>
-      <div className="image-grid">
-        <div className="image">Image 1</div>
-        <div className="image">Image 2</div>
-        <div className="image">Image 3</div>
-        <div className="image">Image 4</div>
+      <div className="about-content">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </p>
+        <div className="image-grid">
+          <div className="image"></div>
+          <div className="image"></div>
+          <div className="image"></div>
+          <div className="image"></div>
+        </div>
       </div>
     </section>
   );
