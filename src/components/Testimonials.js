@@ -3,8 +3,8 @@ import React from 'react';
 function Testimonials() {
   const reviews = [
     { id: 1, text: "Amazing food and service!", rating: 5, name: "John Doe", image: "customer1.jpg" },
-    { id: 2, text: "Best dining experience!", rating: 4, name: "Jane Smith", image: "customer2.jpg" },
-    { id: 3, text: "Delicious dishes!", rating: 5, name: "Mike Johnson", image: "customer3.jpg" },
+    { id: 2, text: "Best dining experience!", rating: 4, name: "Mike Johnson", image: "customer2.jpg" },
+    { id: 3, text: "Very delicious dishes!", rating: 5, name: "Jane Smith", image: "customer3.jpg" }, // Swapped
   ];
 
   return (
@@ -13,7 +13,7 @@ function Testimonials() {
       <div className="review-list">
         {reviews.map((review) => (
           <div key={review.id} className="review">
-            <img src={require('../icons_assets/' + review.image)} alt={review.name} width="50" height="50" />
+            <img src={require(`../icons_assets/${review.image}`)} alt={review.name} className="customer-image" />
             <div className="rating">{'★'.repeat(review.rating) + '☆'.repeat(5 - review.rating)}</div>
             <p>{review.text}</p>
             <p><strong>{review.name}</strong></p>

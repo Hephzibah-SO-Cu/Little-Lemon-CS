@@ -2,9 +2,27 @@ import React from 'react';
 
 function Highlights() {
   const dishes = [
-    { id: 1, name: "Greek Salad", description: "Fresh and healthy", image: "dish1.jpg" },
-    { id: 2, name: "Lemon Pasta", description: "Zesty and delicious", image: "dish2.jpg" },
-    { id: 3, name: "Grilled Fish", description: "Perfectly cooked", image: "dish3.jpg" },
+    {
+      id: 1,
+      name: "Bruschetta",
+      description: "Toasted bread topped with fresh tomatoes, basil, and olive oil.",
+      price: "$8.99",
+      image: "dish1.jpg",
+    },
+    {
+      id: 2,
+      name: "Greek Salad",
+      description: "Crisp cucumbers, tomatoes, olives, feta, and a tangy vinaigrette.",
+      price: "$10.99",
+      image: "dish2.jpg",
+    },
+    {
+      id: 3,
+      name: "Lemon Cake",
+      description: "Moist lemon-infused cake with a zesty glaze.",
+      price: "$6.99",
+      image: "dish3.jpg",
+    },
   ];
 
   return (
@@ -20,6 +38,7 @@ function Highlights() {
             />
             <p>{dish.name}</p>
             <p>{dish.description}</p>
+            <p className="price">{dish.price}</p>
             <button>Order Now</button>
           </div>
         ))}
