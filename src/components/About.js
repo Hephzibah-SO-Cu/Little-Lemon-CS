@@ -6,14 +6,12 @@ function About() {
       <h2>About Us</h2>
       <div className="about-content">
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          Little Lemon is a charming neighborhood bistro that serves simple food and classic cocktails in a lively but casual environment. We would love to hear more about your experience with us!
         </p>
         <div className="image-grid">
-          <div className="image"></div>
-          <div className="image"></div>
-          <div className="image"></div>
-          <div className="image"></div>
+          <div className="image"><img src={require('../icons_assets/about1.jpg')} alt="Mario and Adrian A" /></div>
+          <div className="image"><img src={require('../icons_assets/about2.jpg')} alt="Mario and Adrian B" /></div>
+          <div className="image"><img src={require('../icons_assets/about3.jpg')} alt="Restaurant Chef B" /></div>
         </div>
       </div>
     </section>

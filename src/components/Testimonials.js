@@ -13,7 +13,7 @@ function Testimonials() {
       <div className="review-list">
         {reviews.map((review) => (
           <div key={review.id} className="review">
-            {/* Remove image until files are added */}
+            <img src={require('../icons_assets/' + review.image)} alt={review.name} width="50" height="50" />
             <div className="rating">{'★'.repeat(review.rating) + '☆'.repeat(5 - review.rating)}</div>
             <p>{review.text}</p>
             <p><strong>{review.name}</strong></p>
