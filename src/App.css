@@ -12,7 +12,7 @@ body {
   padding: 0;
 }
 
-/* Global Typography */
+/* Global Typography (Updated) */
 h1,
 h2,
 h3,
@@ -20,9 +20,10 @@ h4,
 h5,
 h6 {
   font-family: 'Markazi Text', serif;
-  color: #495E57; /* Default heading color */
+  color: #495E57;
   line-height: 1.2;
   margin-bottom: 10px;
+  letter-spacing: 0.02em; /* Added for polish */
 }
 
 h1 {
@@ -251,11 +252,16 @@ main > :not(:last-child) {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  border: 1px solid #ccc; /* Subtle border */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow */
+  border-radius: 10px; /* Match image */
+  padding: 10px;
 }
 .dish-image {
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  /* height: 200px; */
   background-color: #ccc;
+  border-radius: 10px;
 }
 .dish p {
   margin: 5px 0;
@@ -298,7 +304,14 @@ main > :not(:last-child) {
   border-radius: 10px;
   width: 200px;
   text-align: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Stronger shadow */
+  border: 1px solid #eee; /* Subtle border */
+}
+
+.rating {
+  color: #F4CE14;
+  font-size: 20px;
+  margin: 5px 0;
 }
 
 /* About */
@@ -376,6 +389,48 @@ main > :not(:last-child) {
 }
 .footer-content nav ul li a:hover {
   text-decoration: underline;
+}
+
+/* Booking Page (New Styles) */
+.booking-page {
+  padding: 40px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.booking-page h1 {
+  font-size: 36px;
+  color: #495E57;
+  margin-bottom: 20px;
+}
+
+.booking-page form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.booking-page label {
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  color: #495E57;
+}
+
+.booking-page input {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.booking-page button {
+  padding: 10px;
+  background-color: #F4CE14;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
 }
 
 /* Responsive Design */
@@ -464,7 +519,7 @@ main > :not(:last-child) {
   }
   .dish-image {
     width: 150px;
-    height: 150px;
+    /* height: 150px; */
   }
   .testimonials {
     height: auto;
