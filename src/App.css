@@ -289,6 +289,7 @@ main > :not(:last-child) {
 .footer-content nav ul li a:hover {
   text-decoration: underline;
 }
+/* [Previous CSS remains unchanged until media query] */
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -296,16 +297,23 @@ main > :not(:last-child) {
     flex-wrap: wrap;
     justify-content: center;
     padding: 10px;
+    height: auto; /* Allow height to adjust */
+  }
+  .nav img {
+    margin-bottom: 10px; /* Space below logo */
   }
   .nav ul {
     flex-direction: column;
     gap: 10px;
+    width: 100%;
+    text-align: center;
   }
   .nav ul li {
     display: block;
   }
   .nav .user-icon {
     margin-top: 10px;
+    margin-left: auto; /* Push to right if space */
   }
   .hero {
     height: 500px;
@@ -314,10 +322,14 @@ main > :not(:last-child) {
   .hero-content {
     flex-direction: column;
     text-align: center;
+    gap: 20px;
   }
   .hero-image {
     width: 100%;
-    height: 300px;
+    height: 250px; /* Reduced for mobile */
+  }
+  .hero-text {
+    max-width: 100%; /* Full width on mobile */
   }
   .highlights {
     height: auto;
