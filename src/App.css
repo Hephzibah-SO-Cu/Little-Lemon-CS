@@ -12,6 +12,94 @@ body {
   padding: 0;
 }
 
+/* Global Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Markazi Text', serif;
+  color: #495E57; /* Default heading color */
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-size: 48px;
+}
+
+h2 {
+  font-size: 36px;
+}
+
+h3 {
+  font-size: 28px;
+}
+
+h4 {
+  font-size: 24px;
+}
+
+h5 {
+  font-size: 20px;
+}
+
+h6 {
+  font-size: 18px;
+}
+
+p {
+  font-family: 'Karla', sans-serif;
+  font-size: 18px;
+  color: #495E57; /* Default paragraph color */
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+span {
+  font-family: 'Karla', sans-serif;
+  font-size: 16px;
+  color: #495E57; /* Default span color */
+}
+
+/* Global Navigation Elements */
+nav {
+  padding: 0 60px; /* Increased padding for edge spacing */
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+li {
+  display: inline;
+}
+
+li a {
+  color: #495E57;
+  text-decoration: none;
+  font-family: 'Karla', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+li a:hover {
+  text-decoration: underline;
+}
+
+/* Global Image Styles */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px; /* Rounded corners to match Testimonials */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* App Container */
 .App {
   display: flex;
   flex-direction: column;
@@ -19,7 +107,9 @@ body {
 }
 
 /* Semantic sections */
-nav, main, footer {
+nav,
+main,
+footer {
   padding: 0;
 }
 
@@ -31,38 +121,44 @@ main > :not(:last-child) {
 /* Nav */
 .nav {
   height: 80px;
-  background-color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 40px;
 }
+
 .nav img {
-  margin-right: 20px;
+  margin-left: 20px; /* Space on the left for logo */
 }
-.nav ul {
-  list-style: none;
+
+.hamburger {
+  display: none; /* Hidden on desktop */
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-links {
   display: flex;
   justify-content: center;
   gap: 20px;
   flex-grow: 1;
 }
-.nav ul li {
+
+.nav-links li {
   display: inline;
 }
-.nav ul li a {
+
+.nav-links li a {
   color: #495E57;
-  text-decoration: none;
-  font-family: 'Karla', sans-serif;
 }
-.nav ul li a:hover {
-  text-decoration: underline;
-}
+
 .nav .user-icon {
   width: 30px;
   height: 30px;
   background-color: #ccc;
   border-radius: 50%;
+  margin-right: 20px; /* Space on the right for user icon */
 }
 
 /* Hero */
@@ -74,11 +170,11 @@ main > :not(:last-child) {
   background-size: cover;
   background-position: center;
   display: flex;
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
+  justify-content: center;
+  align-items: center;
   padding: 0 40px;
   margin-top: 0;
-  position: relative; /* For overlay */
+  position: relative;
 }
 .hero::before {
   content: '';
@@ -87,7 +183,7 @@ main > :not(:last-child) {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Black with 50% opacity */
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 1;
 }
 .hero-content {
@@ -95,7 +191,7 @@ main > :not(:last-child) {
   align-items: center;
   gap: 40px;
   max-width: 1200px;
-  position: relative; /* Above overlay */
+  position: relative;
   z-index: 2;
 }
 .hero-text {
@@ -103,16 +199,17 @@ main > :not(:last-child) {
   max-width: 500px;
 }
 .hero h1 {
-  font-family: 'Markazi Text', serif;
   font-size: 48px;
+  color: #F4CE14; /* Changed to yellow for visibility */
 }
 .hero h2 {
-  font-family: 'Markazi Text', serif;
   font-size: 36px;
+  color: #F4CE14; /* Changed to yellow for visibility */
 }
 .hero p {
   font-size: 18px;
   margin: 10px 0;
+  color: #fff; /* Override global */
 }
 .hero button {
   background-color: #F4CE14;
@@ -124,7 +221,7 @@ main > :not(:last-child) {
 .hero-image {
   width: 400px;
   height: 600px;
-  background-color: #ccc; /* Placeholder */
+  background-color: #ccc;
 }
 
 /* Highlights */
@@ -138,9 +235,8 @@ main > :not(:last-child) {
   gap: 20px;
 }
 .highlights h2 {
-  font-family: 'Markazi Text', serif;
   font-size: 36px;
-  color: #F4CE14;
+  color: #F4CE14; /* Override global */
 }
 .dish-list {
   display: flex;
@@ -159,11 +255,11 @@ main > :not(:last-child) {
 .dish-image {
   width: 200px;
   height: 200px;
-  background-color: #ccc; /* Placeholder */
+  background-color: #ccc;
 }
 .dish p {
   margin: 5px 0;
-  color: #F4CE14;
+  color: #F4CE14; /* Override global */
 }
 .dish button {
   background-color: #F4CE14;
@@ -187,7 +283,6 @@ main > :not(:last-child) {
   gap: 20px;
 }
 .testimonials h2 {
-  font-family: 'Markazi Text', serif;
   font-size: 36px;
   color: #495E57;
 }
@@ -203,6 +298,7 @@ main > :not(:last-child) {
   border-radius: 10px;
   width: 200px;
   text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* About */
@@ -216,9 +312,8 @@ main > :not(:last-child) {
   gap: 20px;
 }
 .about h2 {
-  font-family: 'Markazi Text', serif;
   font-size: 36px;
-  color: #F4CE14;
+  color: #F4CE14; /* Override global */
 }
 .about-content {
   display: flex;
@@ -230,7 +325,7 @@ main > :not(:last-child) {
 .about-content p {
   font-size: 18px;
   max-width: 500px;
-  color: #F4CE14;
+  color: #F4CE14; /* Override global */
 }
 .image-grid {
   display: grid;
@@ -244,18 +339,13 @@ main > :not(:last-child) {
   width: 200px;
   height: 200px;
 }
-.image:nth-child(1) { grid-area: top-left; }
-.image:nth-child(2) { grid-area: top-right; }
-.image:nth-child(3) { grid-area: bottom-left; }
-.image:nth-child(4) { grid-area: bottom-right; }
 
 /* Footer */
 .footer {
   height: 140px;
-  background-color: #EDEFEE;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; /* Removed background-color: #fff */
 }
 .footer-content {
   display: flex;
@@ -264,9 +354,7 @@ main > :not(:last-child) {
   gap: 20px;
   max-width: 1200px;
 }
-.footer-content img {
-  margin-right: 20px;
-}
+
 .footer-content nav ul {
   list-style: none;
   display: flex;
@@ -289,32 +377,52 @@ main > :not(:last-child) {
 .footer-content nav ul li a:hover {
   text-decoration: underline;
 }
-/* [Previous CSS remains unchanged until media query] */
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  /* Navbar */
   .nav {
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 10px;
-    height: auto; /* Allow height to adjust */
+    justify-content: space-between;
+    padding: 10px 20px;
+    height: auto;
   }
   .nav img {
-    margin-bottom: 10px; /* Space below logo */
+    width: 40px;
+    height: 40px;
   }
-  .nav ul {
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-    text-align: center;
-  }
-  .nav ul li {
+  .hamburger {
     display: block;
   }
-  .nav .user-icon {
-    margin-top: 10px;
-    margin-left: auto; /* Push to right if space */
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 10;
   }
+  .nav-links.open {
+    display: flex;
+    animation: slideIn 0.3s ease-in-out;
+  }
+  .nav-links li {
+    display: block;
+  }
+  .nav-links li a {
+    font-size: 16px;
+  }
+  .nav .user-icon {
+    width: 25px;
+    height: 25px;
+  }
+
+  /* Hero */
   .hero {
     height: 500px;
     padding: 20px;
@@ -322,15 +430,31 @@ main > :not(:last-child) {
   .hero-content {
     flex-direction: column;
     text-align: center;
-    gap: 20px;
+    gap: 15px;
   }
   .hero-image {
     width: 100%;
-    height: 250px; /* Reduced for mobile */
+    height: 300px;
   }
   .hero-text {
-    max-width: 100%; /* Full width on mobile */
+    max-width: 100%;
   }
+  .hero h1 {
+    font-size: 36px;
+  }
+  .hero h2 {
+    font-size: 24px;
+  }
+  .hero p {
+    font-size: 16px;
+    margin: 8px 0;
+  }
+  .hero button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  /* Other sections */
   .highlights {
     height: auto;
     padding: 20px;
@@ -373,5 +497,60 @@ main > :not(:last-child) {
   .footer-content {
     flex-direction: column;
     text-align: center;
+  }
+}
+
+/* Extra Small Screens (below 480px) */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 40px;
+  }
+  h2 {
+    font-size: 32px;
+  }
+  h3 {
+    font-size: 24px;
+  }
+  h4 {
+    font-size: 20px;
+  }
+  h5 {
+    font-size: 18px;
+  }
+  h6 {
+    font-size: 16px;
+  }
+  p {
+    font-size: 16px;
+  }
+  span {
+    font-size: 14px;
+  }
+  .nav-links li a {
+    font-size: 14px;
+  }
+  .hero h1 {
+    font-size: 28px;
+  }
+  .hero h2 {
+    font-size: 20px;
+  }
+  .hero p {
+    font-size: 14px;
+  }
+  .hero button {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
