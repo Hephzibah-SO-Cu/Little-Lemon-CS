@@ -1,17 +1,14 @@
 import React from 'react';
-import Hero from './Hero';
-import Highlights from './Highlights';
-import Testimonials from './Testimonials';
-import About from './About';
+import { Routes, Route } from 'react-router-dom';
+import HomePage from './HomePage';
+import BookingPage from './BookingPage';
 
 function Main() {
   return (
-    <main>
-      <Hero />
-      <Highlights />
-      <Testimonials />
-      <About />
-    </main>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/booking" element={<BookingPage />} />
+    </Routes>
   );
 }
 
