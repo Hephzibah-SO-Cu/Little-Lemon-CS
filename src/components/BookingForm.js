@@ -12,6 +12,7 @@ function BookingForm({ formData, availableTimes, handleChange, handleSubmit }) {
           value={formData.date}
           onChange={handleChange}
           required
+          aria-required="true"
         />
       </label>
       <label htmlFor="time">
@@ -22,6 +23,7 @@ function BookingForm({ formData, availableTimes, handleChange, handleSubmit }) {
           value={formData.time}
           onChange={handleChange}
           required
+          aria-required="true"
         >
           <option value="" disabled hidden>
             Select a time
@@ -45,8 +47,12 @@ function BookingForm({ formData, availableTimes, handleChange, handleSubmit }) {
           value={formData.guests}
           onChange={handleChange}
           required
+          aria-required="true"
+          aria-describedby="guest-note"
         />
-        <span className="guest-note">For 10+ guests, please contact us.</span>
+        <span id="guest-note" className="guest-note">
+          For 10+ guests, please contact us.
+        </span>
       </label>
       <label htmlFor="firstName">
         First Name:
@@ -57,6 +63,7 @@ function BookingForm({ formData, availableTimes, handleChange, handleSubmit }) {
           value={formData.firstName}
           onChange={handleChange}
           required
+          aria-required="true"
         />
       </label>
       <label htmlFor="lastName">
@@ -68,6 +75,7 @@ function BookingForm({ formData, availableTimes, handleChange, handleSubmit }) {
           value={formData.lastName}
           onChange={handleChange}
           required
+          aria-required="true"
         />
       </label>
       <label htmlFor="phone">
@@ -81,8 +89,12 @@ function BookingForm({ formData, availableTimes, handleChange, handleSubmit }) {
           value={formData.phone}
           onChange={handleChange}
           required
+          aria-required="true"
+          aria-describedby="phone-note"
         />
-        <span className="phone-note">Please include country code (e.g., +234 for Nigeria).</span>
+        <span id="phone-note" className="phone-note">
+          Please include country code (e.g., +234 for Nigeria).
+        </span>
       </label>
       <label htmlFor="email">
         Email:
@@ -94,6 +106,7 @@ function BookingForm({ formData, availableTimes, handleChange, handleSubmit }) {
           value={formData.email}
           onChange={handleChange}
           required
+          aria-required="true"
         />
       </label>
       <label htmlFor="occasion">
@@ -104,6 +117,8 @@ function BookingForm({ formData, availableTimes, handleChange, handleSubmit }) {
           value={formData.occasion}
           onChange={handleChange}
           className={formData.occasion ? 'occasion-selected' : 'occasion-default'}
+          required
+          aria-required="true"
         >
           <option value="" disabled hidden>
             Occasion
