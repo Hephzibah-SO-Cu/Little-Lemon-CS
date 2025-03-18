@@ -6,7 +6,6 @@ function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef(null);
 
-  // Close menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -20,7 +19,6 @@ function Nav() {
     };
   }, []);
 
-  // Close menu when a link is clicked
   const handleLinkClick = () => {
     setIsMenuOpen(false);
   };
@@ -28,7 +26,11 @@ function Nav() {
   return (
     <nav className="nav" ref={menuRef}>
       <img src={logo} alt="Little Lemon Logo" width="50" height="50" />
-      <button className="hamburger" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+      <button
+        className="hamburger"
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        aria-label="Toggle menu"
+      >
         ☰
       </button>
       <ul className={isMenuOpen ? 'nav-links open' : 'nav-links'}>
@@ -39,7 +41,7 @@ function Nav() {
         <li><Link to="/order" onClick={handleLinkClick}>Order Online</Link></li>
         <li><Link to="/login" onClick={handleLinkClick}>Login</Link></li>
       </ul>
-      <div className="user-icon"></div>
+      <span className="user-icon"></span>
     </nav>
   );
 }

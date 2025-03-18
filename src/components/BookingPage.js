@@ -10,7 +10,7 @@ function BookingPage() {
 
   return (
     <>
-      <div className="booking-page">
+      <section className="booking-page">
         <h1>Reserve a Table</h1>
         <form>
           <label htmlFor="date">
@@ -77,7 +77,7 @@ function BookingPage() {
           </label>
           <button type="submit">Book Now</button>
         </form>
-      </div>
+      </section>
       <Footer />
     </>
   );

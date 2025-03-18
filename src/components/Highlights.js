@@ -30,7 +30,7 @@ function Highlights() {
       <h2>Specials</h2>
       <div className="dish-list">
         {dishes.map((dish) => (
-          <div key={dish.id} className="dish">
+          <article key={dish.id} className="dish">
             <img
               src={require(`../icons_assets/${dish.image}`)}
               alt={dish.name}
@@ -40,7 +40,7 @@ function Highlights() {
             <p>{dish.description}</p>
             <p className="price">{dish.price}</p>
             <button>Order Now</button>
-          </div>
+          </article>
         ))}
       </div>
     </section>

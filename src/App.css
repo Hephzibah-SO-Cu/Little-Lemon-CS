@@ -190,34 +190,35 @@ main > :not(:last-child) {
 .hero-content {
   display: flex;
   align-items: center;
-  gap: 40px;
-  max-width: 1200px;
-  position: relative;
   z-index: 2;
 }
 .hero-text {
-  text-align: left;
-  max-width: 500px;
+  flex-direction: column;
 }
-.hero h1 {
+.hero-text h1 {
   font-size: 48px;
   color: #F4CE14; /* Changed to yellow for visibility */
 }
-.hero h2 {
+.hero-text h2 {
   font-size: 36px;
   color: #F4CE14; /* Changed to yellow for visibility */
 }
-.hero p {
+.hero-text p {
   font-size: 18px;
   margin: 10px 0;
+  width: 400px;
+  line-height: 1.5;
   color: #fff; /* Override global */
 }
-.hero button {
+.hero-button {
+  display: inline-block;
   background-color: #F4CE14;
   border: none;
   padding: 10px 20px;
   font-family: 'Karla', sans-serif;
   cursor: pointer;
+  text-decoration: none;
+  color: #000;
 }
 .hero-image {
   width: 400px;
@@ -541,13 +542,15 @@ main > :not(:last-child) {
 
   /* Hero */
   .hero {
-    height: 500px;
-    padding: 20px;
+    /* height: 500px;
+    padding: 20px; */
+    height: auto;
+    padding: 40px 20px;
   }
   .hero-content {
     flex-direction: column;
-    text-align: center;
-    gap: 15px;
+    /* text-align: center; */
+    gap: 20px;
   }
   .hero-image {
     width: 100%;
