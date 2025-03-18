@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import BookingForm from './BookingForm';
 import Footer from './Footer';
 
-function BookingPage() {
+function BookingPage({ availableTimes, dispatch }) {
   // State for form fields
   const [formData, setFormData] = useState({
     date: '',
@@ -15,16 +15,6 @@ function BookingPage() {
     occasion: '',
   });
 
-  // State for available times
-  const [availableTimes] = useState([
-    '17:00',
-    '18:00',
-    '19:00',
-    '20:00',
-    '21:00',
-    '22:00',
-  ]);
-
   // Handle form field changes
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,6 +22,11 @@ function BookingPage() {
       ...prevData,
       [name]: value,
     }));
+
+    // Dispatch an action to update availableTimes when the date changes
+    if (name === 'date') {
+      dispatch({ type: 'UPDATE_TIMES', date: value });
+    }
   };
 
   // Handle form submission
