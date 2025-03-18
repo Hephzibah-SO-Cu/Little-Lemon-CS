@@ -611,8 +611,6 @@ main > :not(:last-child) {
     width: 150px;
     height: 150px;
   }
-}
-
   .footer {
     height: auto;
     padding: 20px;
@@ -639,7 +637,7 @@ main > :not(:last-child) {
     font-size: 14px;
     padding: 8px;
   }
-
+}
 /* Extra Small Screens (below 480px) */
 @media (max-width: 480px) {
   h1 {
