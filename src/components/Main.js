@@ -3,8 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import HomePage from './HomePage';
 import BookingPage from './BookingPage';
 
-// Initialize the initial state for availableTimes
-const initializeTimes = () => [
+export const initializeTimes = () => [
   '17:00',
   '18:00',
   '19:00',
@@ -13,12 +12,9 @@ const initializeTimes = () => [
   '22:00',
 ];
 
-// Reducer function to update availableTimes based on the selected date
-const updateTimes = (state, action) => {
+export const updateTimes = (state, action) => {
   switch (action.type) {
     case 'UPDATE_TIMES':
-      // For now, return the same times regardless of the date
-      // In the future, this could filter times based on action.date
       return state;
     default:
       return state;
@@ -26,7 +22,6 @@ const updateTimes = (state, action) => {
 };
 
 function Main() {
-  // Use useReducer to manage availableTimes
   const [availableTimes, dispatch] = useReducer(updateTimes, [], initializeTimes);
 
   return (
