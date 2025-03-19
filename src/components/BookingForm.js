@@ -1,11 +1,6 @@
 import React from 'react';
 
-function BookingForm({ formData, availableTimes, dispatch, submitForm }) {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    submitForm(formData);
-  };
-
+function BookingForm({ formData, availableTimes, handleChange, handleSubmit }) {
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="date">
@@ -15,7 +10,7 @@ function BookingForm({ formData, availableTimes, dispatch, submitForm }) {
           id="date"
           name="date"
           value={formData.date}
-          onChange={(e) => dispatch({ type: 'UPDATE_FORM', field: 'date', value: e.target.value })}
+          onChange={handleChange}
           required
           aria-required="true"
         />
@@ -26,7 +21,7 @@ function BookingForm({ formData, availableTimes, dispatch, submitForm }) {
           id="time"
           name="time"
           value={formData.time}
-          onChange={(e) => dispatch({ type: 'UPDATE_FORM', field: 'time', value: e.target.value })}
+          onChange={handleChange}
           required
           aria-required="true"
         >
@@ -50,7 +45,7 @@ function BookingForm({ formData, availableTimes, dispatch, submitForm }) {
           max="10"
           placeholder="1-10"
           value={formData.guests}
-          onChange={(e) => dispatch({ type: 'UPDATE_FORM', field: 'guests', value: e.target.value })}
+          onChange={handleChange}
           required
           aria-required="true"
           aria-describedby="guest-note"
@@ -66,7 +61,7 @@ function BookingForm({ formData, availableTimes, dispatch, submitForm }) {
           id="firstName"
           name="firstName"
           value={formData.firstName}
-          onChange={(e) => dispatch({ type: 'UPDATE_FORM', field: 'firstName', value: e.target.value })}
+          onChange={handleChange}
           required
           aria-required="true"
         />
@@ -78,7 +73,7 @@ function BookingForm({ formData, availableTimes, dispatch, submitForm }) {
           id="lastName"
           name="lastName"
           value={formData.lastName}
-          onChange={(e) => dispatch({ type: 'UPDATE_FORM', field: 'lastName', value: e.target.value })}
+          onChange={handleChange}
           required
           aria-required="true"
         />
@@ -92,7 +87,7 @@ function BookingForm({ formData, availableTimes, dispatch, submitForm }) {
           pattern="\+[0-9]{1,3}\s?[0-9]{9,12}"
           placeholder="+234 123 456 7890"
           value={formData.phone}
-          onChange={(e) => dispatch({ type: 'UPDATE_FORM', field: 'phone', value: e.target.value })}
+          onChange={handleChange}
           required
           aria-required="true"
           aria-describedby="phone-note"
@@ -109,7 +104,7 @@ function BookingForm({ formData, availableTimes, dispatch, submitForm }) {
           name="email"
           placeholder="example@email.com"
           value={formData.email}
-          onChange={(e) => dispatch({ type: 'UPDATE_FORM', field: 'email', value: e.target.value })}
+          onChange={handleChange}
           required
           aria-required="true"
         />
@@ -120,7 +115,7 @@ function BookingForm({ formData, availableTimes, dispatch, submitForm }) {
           id="occasion"
           name="occasion"
           value={formData.occasion}
-          onChange={(e) => dispatch({ type: 'UPDATE_FORM', field: 'occasion', value: e.target.value })}
+          onChange={handleChange}
           className={formData.occasion ? 'occasion-selected' : 'occasion-default'}
           required
           aria-required="true"
