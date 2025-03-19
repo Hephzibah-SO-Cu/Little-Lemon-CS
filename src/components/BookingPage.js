@@ -3,7 +3,7 @@ import BookingForm from './BookingForm';
 import Footer from './Footer';
 import './BookingPage.css';
 
-function BookingPage({ availableTimes, dispatch, submitForm }) {
+function BookingPage({ availableTimes, dispatch, submitForm, bookingData }) {
   // State for form fields
   const [formData, setFormData] = useState({
     date: '',
@@ -15,13 +15,6 @@ function BookingPage({ availableTimes, dispatch, submitForm }) {
     email: '',
     occasion: '',
   });
-
-  // Mock booking data array
-  const bookingData = [
-    { date: '2025-03-18', time: '17:00', guests: 2, name: 'John Doe' },
-    { date: '2025-03-19', time: '18:30', guests: 4, name: 'Jane Smith' },
-    { date: '2025-03-20', time: '20:00', guests: 1, name: 'Bob Johnson' },
-  ];
 
   // Handle form field changes
   const handleChange = (e) => {
@@ -40,8 +33,20 @@ function BookingPage({ availableTimes, dispatch, submitForm }) {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log('handleSubmit called with formData:', formData); // Debug log
     submitForm(formData); // Call submitForm with form data
   };
+
+  // Filter valid bookings (objects with required fields)
+  const validBookings = bookingData.filter(
+    (booking) =>
+      booking &&
+      typeof booking === 'object' &&
+      booking.date &&
+      booking.time &&
+      booking.guests &&
+      booking.name
+  );
 
   return (
     <>
@@ -64,7 +69,7 @@ function BookingPage({ availableTimes, dispatch, submitForm }) {
             </tr>
           </thead>
           <tbody>
-            {bookingData.map((booking, index) => (
+            {validBookings.map((booking, index) => (
               <tr key={index}>
                 <td>{booking.date}</td>
                 <td>{booking.time}</td>
