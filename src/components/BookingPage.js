@@ -3,7 +3,7 @@ import BookingForm from './BookingForm';
 import Footer from './Footer';
 import './BookingPage.css';
 
-function BookingPage({ availableTimes, dispatch }) {
+function BookingPage({ availableTimes, dispatch, submitForm }) {
   // State for form fields
   const [formData, setFormData] = useState({
     date: '',
@@ -40,8 +40,7 @@ function BookingPage({ availableTimes, dispatch }) {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Future: Add submitAPI integration here
+    submitForm(formData); // Call submitForm with form data
   };
 
   return (
