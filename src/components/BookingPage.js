@@ -182,38 +182,40 @@ function BookingPage({ availableTimes, dispatch, submitForm, bookingData }) {
 
   return (
     <>
-      <section className="booking-page">
-        <h1>Reserve a Table</h1>
-        <BookingForm
-          formData={formData}
-          availableTimes={availableTimes}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-          formErrors={formErrors}
-          isFormValid={isFormValid()}
-        />
-        <h2>Existing Bookings</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Time</th>
-              <th>Guests</th>
-              <th>Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            {validBookings.map((booking, index) => (
-              <tr key={index}>
-                <td>{booking.date}</td>
-                <td>{booking.time}</td>
-                <td>{booking.guests}</td>
-                <td>{booking.name}</td>
+      <main>
+        <section className="booking-page">
+          <h1>Reserve a Table</h1>
+          <BookingForm
+            formData={formData}
+            availableTimes={availableTimes}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            formErrors={formErrors}
+            isFormValid={isFormValid()}
+          />
+          <h2 id="existing-bookings">Existing Bookings</h2>
+          <table aria-labelledby="existing-bookings">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Guests</th>
+                <th>Name</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </section>
+            </thead>
+            <tbody>
+              {validBookings.map((booking, index) => (
+                <tr key={index}>
+                  <td>{booking.date}</td>
+                  <td>{booking.time}</td>
+                  <td>{booking.guests}</td>
+                  <td>{booking.name}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </section>
+      </main>
       <Footer />
     </>
   );

@@ -25,7 +25,9 @@ function Nav() {
 
   return (
     <nav className="nav" ref={menuRef}>
-      <img src={logo} alt="Little Lemon Logo" width="50" height="50" />
+      <Link to="/" onClick={handleLinkClick} aria-label="Go to homepage">
+        <img src={logo} alt="Little Lemon Logo" width="50" height="50" />
+      </Link>
       <button
         className="hamburger"
         onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -41,7 +43,10 @@ function Nav() {
         <li><Link to="/order" onClick={handleLinkClick}>Order Online</Link></li>
         <li><Link to="/login" onClick={handleLinkClick}>Login</Link></li>
       </ul>
-      <span className="user-icon"></span>
+      <button className="user-icon" aria-label="Open user menu">
+        {/* Assuming an icon will be added here, e.g., a user profile icon */}
+        <span role="img" aria-hidden="true">👤</span>
+      </button>
     </nav>
   );
 }
