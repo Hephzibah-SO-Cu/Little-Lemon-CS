@@ -23,9 +23,9 @@ function BookingPage({ availableTimes, dispatch }) {
       [name]: value,
     }));
 
-    // Dispatch an action to update availableTimes when the date changes
+    // Dispatch the new date to fetch updated times
     if (name === 'date') {
-      dispatch({ type: 'UPDATE_TIMES', date: value });
+      dispatch(value); // Call fetchTimesForDate with the date string
     }
   };
 
@@ -33,7 +33,7 @@ function BookingPage({ availableTimes, dispatch }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
-    // Future: Add API integration here
+    // Future: Add submitAPI integration here
   };
 
   return (

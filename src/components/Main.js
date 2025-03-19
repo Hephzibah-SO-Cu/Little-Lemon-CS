@@ -1,28 +1,50 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import HomePage from './HomePage';
 import BookingPage from './BookingPage';
 
-export const initializeTimes = () => [
-  '17:00',
-  '18:00',
-  '19:00',
-  '20:00',
-  '21:00',
-  '22:00',
-];
-
+/* eslint-disable no-undef */
+/* globals fetchAPI */
+// Reducer to handle available times
 export const updateTimes = (state, action) => {
   switch (action.type) {
     case 'UPDATE_TIMES':
-      return state;
+      return action.times || state; // Update with fetched times or keep current state
     default:
       return state;
   }
 };
 
 function Main() {
-  const [availableTimes, dispatch] = useReducer(updateTimes, [], initializeTimes);
+  const [availableTimes, dispatch] = useReducer(updateTimes, []);
+
+  // Fetch initial times for today's date
+  const initializeTimes = async () => {
+    try {
+      const today = new Date();
+      const times = await fetchAPI(today); // Fetch available times
+      dispatch({ type: 'UPDATE_TIMES', times });
+    } catch (error) {
+      console.error('Error fetching initial times:', error);
+      dispatch({ type: 'UPDATE_TIMES', times: [] }); // Fallback to empty array
+    }
+  };
+
+  // Fetch times for a selected date
+  const fetchTimesForDate = async (date) => {
+    try {
+      const times = await fetchAPI(new Date(date));
+      dispatch({ type: 'UPDATE_TIMES', times });
+    } catch (error) {
+      console.error('Error fetching times for date:', error);
+      dispatch({ type: 'UPDATE_TIMES', times: [] });
+    }
+  };
+
+  // Initialize times on component mount
+  useEffect(() => {
+    initializeTimes();
+  }, []);
 
   return (
     <main>
@@ -30,7 +52,12 @@ function Main() {
         <Route path="/" element={<HomePage />} />
         <Route
           path="/booking"
-          element={<BookingPage availableTimes={availableTimes} dispatch={dispatch} />}
+          element={
+            <BookingPage
+              availableTimes={availableTimes}
+              dispatch={fetchTimesForDate} // Pass the async function
+            />
+          }
         />
       </Routes>
     </main>
