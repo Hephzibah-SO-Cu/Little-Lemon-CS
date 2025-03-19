@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import BookingForm from './BookingForm';
 import Footer from './Footer';
+import './BookingPage.css';
 
 function BookingPage({ availableTimes, dispatch }) {
   // State for form fields
@@ -15,6 +16,13 @@ function BookingPage({ availableTimes, dispatch }) {
     occasion: '',
   });
 
+  // Mock booking data array
+  const bookingData = [
+    { date: '2025-03-18', time: '17:00', guests: 2, name: 'John Doe' },
+    { date: '2025-03-19', time: '18:30', guests: 4, name: 'Jane Smith' },
+    { date: '2025-03-20', time: '20:00', guests: 1, name: 'Bob Johnson' },
+  ];
+
   // Handle form field changes
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,7 +33,7 @@ function BookingPage({ availableTimes, dispatch }) {
 
     // Dispatch the new date to fetch updated times
     if (name === 'date') {
-      dispatch(value); // Call fetchTimesForDate with the date string
+      dispatch(value);
     }
   };
 
@@ -46,6 +54,27 @@ function BookingPage({ availableTimes, dispatch }) {
           handleChange={handleChange}
           handleSubmit={handleSubmit}
         />
+        <h2>Existing Bookings</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Guests</th>
+              <th>Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            {bookingData.map((booking, index) => (
+              <tr key={index}>
+                <td>{booking.date}</td>
+                <td>{booking.time}</td>
+                <td>{booking.guests}</td>
+                <td>{booking.name}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </section>
       <Footer />
     </>
