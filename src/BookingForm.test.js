@@ -4,7 +4,6 @@ import BookingForm from 'components/BookingForm';
 import userEvent from '@testing-library/user-event';
 
 beforeEach(() => {
-  jest.spyOn(window.HTMLFormElement.prototype, 'submit').mockImplementation(() => {});
   // Mock fetchAPI for consistent test results
   window.fetchAPI = jest.fn().mockImplementation((date) => {
     const day = date.getDate();
@@ -32,16 +31,16 @@ test('Renders the BookingForm submit button text', () => {
     occasion: '',
   };
   const mockAvailableTimes = window.fetchAPI(new Date('2025-03-18')); // Even day
-  const mockHandleChange = jest.fn();
-  const mockHandleSubmit = jest.fn();
+  const mockDispatch = jest.fn();
+  const mockSubmitForm = jest.fn();
 
   render(
     <MemoryRouter>
       <BookingForm
         formData={mockFormData}
         availableTimes={mockAvailableTimes}
-        handleChange={mockHandleChange}
-        handleSubmit={mockHandleSubmit}
+        dispatch={mockDispatch}
+        submitForm={mockSubmitForm}
       />
     </MemoryRouter>
   );
@@ -62,16 +61,16 @@ test('Renders the BookingForm "Date:" label', () => {
     occasion: '',
   };
   const mockAvailableTimes = window.fetchAPI(new Date('2025-03-18')); // Even day
-  const mockHandleChange = jest.fn();
-  const mockHandleSubmit = jest.fn();
+  const mockDispatch = jest.fn();
+  const mockSubmitForm = jest.fn();
 
   render(
     <MemoryRouter>
       <BookingForm
         formData={mockFormData}
         availableTimes={mockAvailableTimes}
-        handleChange={mockHandleChange}
-        handleSubmit={mockHandleSubmit}
+        dispatch={mockDispatch}
+        submitForm={mockSubmitForm}
       />
     </MemoryRouter>
   );
@@ -92,16 +91,16 @@ test('Allows the user to submit the BookingForm', async () => {
     occasion: 'Birthday',
   };
   const mockAvailableTimes = window.fetchAPI(new Date('2025-03-18')); // Even day
-  const mockHandleChange = jest.fn();
-  const mockHandleSubmit = jest.fn();
+  const mockDispatch = jest.fn();
+  const mockSubmitForm = jest.fn();
 
   render(
     <MemoryRouter>
       <BookingForm
         formData={mockFormData}
         availableTimes={mockAvailableTimes}
-        handleChange={mockHandleChange}
-        handleSubmit={mockHandleSubmit}
+        dispatch={mockDispatch}
+        submitForm={mockSubmitForm}
       />
     </MemoryRouter>
   );
@@ -109,5 +108,6 @@ test('Allows the user to submit the BookingForm', async () => {
   const submitButton = screen.getByText('Make Your Reservation');
   await userEvent.click(submitButton);
 
-  expect(mockHandleSubmit).toHaveBeenCalledTimes(1);
+  expect(mockSubmitForm).toHaveBeenCalledTimes(1);
+  expect(mockSubmitForm).toHaveBeenCalledWith(mockFormData);
 });
