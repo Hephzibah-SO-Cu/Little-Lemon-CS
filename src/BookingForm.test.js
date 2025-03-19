@@ -145,6 +145,75 @@ describe('BookingForm', () => {
     });
   });
 
+  // New test to verify HTML5 validation attributes
+  test('Applies correct HTML5 validation attributes to form fields', async () => {
+    const mockFormData = {
+      date: '2025-03-18',
+      time: '17:00',
+      guests: 2,
+      firstName: 'Busayo',
+      lastName: 'Adebayo',
+      phone: '+2348012345678',
+      email: 'busayo@example.com',
+      occasion: 'Birthday',
+    };
+    const mockHandleChange = jest.fn();
+    const mockSubmitForm = jest.fn();
+
+    render(
+      <MemoryRouter>
+        <BookingForm
+          formData={mockFormData}
+          availableTimes={['17:00', '18:00', '19:00']}
+          handleChange={mockHandleChange}
+          handleSubmit={mockSubmitForm}
+          formErrors={{}}
+          isFormValid={true}
+        />
+      </MemoryRouter>
+    );
+
+    await waitFor(() => {
+      const dateInput = screen.getByLabelText(/Date:/i);
+      expect(dateInput).toHaveAttribute('type', 'date');
+      expect(dateInput).toHaveAttribute('required');
+      expect(dateInput).toHaveAttribute('min'); // Value will be today's date, so we just check for presence
+
+      const timeSelect = screen.getByLabelText(/Time:/i);
+      expect(timeSelect).toHaveAttribute('required');
+
+      const guestsInput = screen.getByLabelText(/Number of Guests:/i);
+      expect(guestsInput).toHaveAttribute('type', 'number');
+      expect(guestsInput).toHaveAttribute('required');
+      expect(guestsInput).toHaveAttribute('min', '1');
+      expect(guestsInput).toHaveAttribute('max', '10');
+
+      const firstNameInput = screen.getByLabelText(/First Name:/i);
+      expect(firstNameInput).toHaveAttribute('type', 'text');
+      expect(firstNameInput).toHaveAttribute('required');
+      expect(firstNameInput).toHaveAttribute('pattern', '[A-Za-z]+');
+      expect(firstNameInput).toHaveAttribute('minLength', '2');
+
+      const lastNameInput = screen.getByLabelText(/Last Name:/i);
+      expect(lastNameInput).toHaveAttribute('type', 'text');
+      expect(lastNameInput).toHaveAttribute('required');
+      expect(lastNameInput).toHaveAttribute('pattern', '[A-Za-z]+');
+      expect(lastNameInput).toHaveAttribute('minLength', '2');
+
+      const phoneInput = screen.getByLabelText(/Phone Number:/i);
+      expect(phoneInput).toHaveAttribute('type', 'tel');
+      expect(phoneInput).toHaveAttribute('required');
+      expect(phoneInput).toHaveAttribute('pattern', '\\+[0-9]{1,3}\\s?[0-9]{9,12}');
+
+      const emailInput = screen.getByLabelText(/Email:/i);
+      expect(emailInput).toHaveAttribute('type', 'email');
+      expect(emailInput).toHaveAttribute('required');
+
+      const occasionSelect = screen.getByLabelText(/Select Occasion:/i);
+      expect(occasionSelect).toHaveAttribute('required');
+    });
+  });
+
   test('Allows the user to submit the BookingForm when valid', async () => {
     const initialFormData = {
       date: '',
@@ -260,7 +329,7 @@ describe('BookingForm', () => {
     await userEvent.type(dateInput, '2025-03-10'); // Past date
     await userEvent.selectOptions(timeSelect, ''); // Invalid time
     await userEvent.clear(guestsInput);
-    await userEvent.type(guestsInput, '0'); // Invalid guests
+    await userEvent.type(guestsInput, '0'); // Invalid guests (below min)
     await userEvent.type(firstNameInput, 'B1'); // Invalid first name
     await userEvent.type(lastNameInput, 'A'); // Too short
     await userEvent.type(phoneInput, 'abc'); // Invalid phone
@@ -276,6 +345,14 @@ describe('BookingForm', () => {
       expect(screen.getByText('Please enter a valid phone number (e.g., +234 1234567890)')).toBeInTheDocument();
       expect(screen.getByText('Please enter a valid email address')).toBeInTheDocument();
       expect(screen.getByText('Occasion is required')).toBeInTheDocument();
+      expect(submitButton).toBeDisabled();
+    });
+
+    // Test the upper bound for guests
+    await userEvent.clear(guestsInput);
+    await userEvent.type(guestsInput, '11'); // Invalid guests (above max)
+    await waitFor(() => {
+      expect(screen.getByText('Number of guests cannot exceed 10')).toBeInTheDocument();
       expect(submitButton).toBeDisabled();
     });
   });
