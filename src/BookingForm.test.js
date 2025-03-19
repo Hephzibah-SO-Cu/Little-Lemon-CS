@@ -5,6 +5,15 @@ import userEvent from '@testing-library/user-event';
 
 beforeEach(() => {
   jest.spyOn(window.HTMLFormElement.prototype, 'submit').mockImplementation(() => {});
+  // Mock fetchAPI for consistent test results
+  window.fetchAPI = jest.fn().mockImplementation((date) => {
+    const day = date.getDate();
+    if (day % 2 === 0) {
+      return ['17:00', '18:00', '19:00']; // Even days
+    } else {
+      return ['20:00', '21:00', '22:00']; // Odd days
+    }
+  });
 });
 
 afterEach(() => {
@@ -22,7 +31,7 @@ test('Renders the BookingForm submit button text', () => {
     email: '',
     occasion: '',
   };
-  const mockAvailableTimes = ['17:00', '18:00', '19:00', '20:00', '21:00', '22:00'];
+  const mockAvailableTimes = window.fetchAPI(new Date('2025-03-18')); // Even day
   const mockHandleChange = jest.fn();
   const mockHandleSubmit = jest.fn();
 
@@ -52,7 +61,7 @@ test('Renders the BookingForm "Date:" label', () => {
     email: '',
     occasion: '',
   };
-  const mockAvailableTimes = ['17:00', '18:00', '19:00', '20:00', '21:00', '22:00'];
+  const mockAvailableTimes = window.fetchAPI(new Date('2025-03-18')); // Even day
   const mockHandleChange = jest.fn();
   const mockHandleSubmit = jest.fn();
 
@@ -82,7 +91,7 @@ test('Allows the user to submit the BookingForm', async () => {
     email: 'busayo@example.com',
     occasion: 'Birthday',
   };
-  const mockAvailableTimes = ['17:00', '18:00', '19:00', '20:00', '21:00', '22:00'];
+  const mockAvailableTimes = window.fetchAPI(new Date('2025-03-18')); // Even day
   const mockHandleChange = jest.fn();
   const mockHandleSubmit = jest.fn();
 

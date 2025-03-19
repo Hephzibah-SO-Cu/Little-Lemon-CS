@@ -1,16 +1,26 @@
-// public/api.js
-window.fetchAPI = async (date) => {
-    console.log('Mock fetchAPI called with date:', date);
-    // Mock response: return different times based on the date
-    const day = date.getDate();
-    if (day % 2 === 0) {
-      return ['17:00', '18:00', '19:00']; // Even days
-    } else {
-      return ['20:00', '21:00', '22:00']; // Odd days
-    }
+const seededRandom = function (seed) {
+  var m = 2**35 - 31;
+  var a = 185852;
+  var s = seed % m;
+  return function () {
+      return (s = s * a % m) / m;
   };
-  
-  window.submitAPI = async (formData) => {
-    console.log('Mock submitAPI called with formData:', formData);
-    return true;
-  };
+}
+
+const fetchAPI = function(date) {
+  let result = [];
+  let random = seededRandom(date.getDate());
+
+  for(let i = 17; i <= 23; i++) {
+      if(random() < 0.5) {
+          result.push(i + ':00');
+      }
+      if(random() < 0.5) {
+          result.push(i + ':30');
+      }
+  }
+  return result;
+};
+const submitAPI = function(formData) {
+  return true;
+};
