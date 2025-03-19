@@ -1,8 +1,11 @@
 import React from 'react';
 
-function BookingForm({ formData, availableTimes, handleChange, handleSubmit }) {
+function BookingForm({ formData, availableTimes, handleChange, handleSubmit, formErrors, isFormValid }) {
+  // Get today's date in YYYY-MM-DD format for the min attribute
+  const today = new Date().toISOString().split('T')[0];
+
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} noValidate>
       <label htmlFor="date">
         Date:
         <input
@@ -11,9 +14,11 @@ function BookingForm({ formData, availableTimes, handleChange, handleSubmit }) {
           name="date"
           value={formData.date}
           onChange={handleChange}
+          min={today}
           required
           aria-required="true"
         />
+        {formErrors.date && <span className="error">{formErrors.date}</span>}
       </label>
       <label htmlFor="time">
         Time:
@@ -34,6 +39,7 @@ function BookingForm({ formData, availableTimes, handleChange, handleSubmit }) {
             </option>
           ))}
         </select>
+        {formErrors.time && <span className="error">{formErrors.time}</span>}
       </label>
       <label htmlFor="guests">
         Number of Guests:
@@ -53,6 +59,7 @@ function BookingForm({ formData, availableTimes, handleChange, handleSubmit }) {
         <span id="guest-note" className="guest-note">
           For 10+ guests, please contact us.
         </span>
+        {formErrors.guests && <span className="error">{formErrors.guests}</span>}
       </label>
       <label htmlFor="firstName">
         First Name:
@@ -62,9 +69,13 @@ function BookingForm({ formData, availableTimes, handleChange, handleSubmit }) {
           name="firstName"
           value={formData.firstName}
           onChange={handleChange}
+          pattern="[A-Za-z]+"
+          minLength="2"
           required
           aria-required="true"
+          title="First name must contain only letters and be at least 2 characters long"
         />
+        {formErrors.firstName && <span className="error">{formErrors.firstName}</span>}
       </label>
       <label htmlFor="lastName">
         Last Name:
@@ -74,9 +85,13 @@ function BookingForm({ formData, availableTimes, handleChange, handleSubmit }) {
           name="lastName"
           value={formData.lastName}
           onChange={handleChange}
+          pattern="[A-Za-z]+"
+          minLength="2"
           required
           aria-required="true"
+          title="Last name must contain only letters and be at least 2 characters long"
         />
+        {formErrors.lastName && <span className="error">{formErrors.lastName}</span>}
       </label>
       <label htmlFor="phone">
         Phone Number:
@@ -95,6 +110,7 @@ function BookingForm({ formData, availableTimes, handleChange, handleSubmit }) {
         <span id="phone-note" className="phone-note">
           Please include country code (e.g., +234 for Nigeria).
         </span>
+        {formErrors.phone && <span className="error">{formErrors.phone}</span>}
       </label>
       <label htmlFor="email">
         Email:
@@ -108,6 +124,7 @@ function BookingForm({ formData, availableTimes, handleChange, handleSubmit }) {
           required
           aria-required="true"
         />
+        {formErrors.email && <span className="error">{formErrors.email}</span>}
       </label>
       <label htmlFor="occasion">
         Select Occasion:
@@ -129,8 +146,11 @@ function BookingForm({ formData, availableTimes, handleChange, handleSubmit }) {
           <option value="Business Meeting">Business Meeting</option>
           <option value="Other">Other</option>
         </select>
+        {formErrors.occasion && <span className="error">{formErrors.occasion}</span>}
       </label>
-      <button type="submit">Make Your Reservation</button>
+      <button type="submit" disabled={!isFormValid}>
+        Make Your Reservation
+      </button>
     </form>
   );
 }

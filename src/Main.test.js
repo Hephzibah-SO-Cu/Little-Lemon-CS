@@ -81,17 +81,19 @@ test('Writes booking data to localStorage on form submission', async () => {
     expect(screen.getByRole('option', { name: /17:00/ })).toBeInTheDocument();
   });
 
-  const dateInput = screen.getByLabelText('Date:');
-  const timeSelect = screen.getByLabelText('Time:');
+  const dateInput = screen.getByLabelText(/Date:/i);
+  const timeSelect = screen.getByLabelText(/Time:/i);
   const guestsInput = screen.getByLabelText(/Number of Guests:/i);
-  const firstNameInput = screen.getByLabelText('First Name:');
-  const lastNameInput = screen.getByLabelText('Last Name:');
+  const firstNameInput = screen.getByLabelText(/First Name:/i);
+  const lastNameInput = screen.getByLabelText(/Last Name:/i);
   const phoneInput = screen.getByLabelText(/Phone Number:/i);
-  const emailInput = screen.getByLabelText('Email:');
-  const occasionSelect = screen.getByLabelText('Select Occasion:');
+  const emailInput = screen.getByLabelText(/Email:/i);
+  const occasionSelect = screen.getByLabelText(/Select Occasion:/i);
   const submitButton = screen.getByText('Make Your Reservation');
 
-  await userEvent.type(dateInput, '2025-03-18');
+  expect(submitButton).toBeDisabled();
+
+  await userEvent.type(dateInput, '2025-03-20'); // Use a future date
   await userEvent.selectOptions(timeSelect, '17:00');
   await userEvent.clear(guestsInput);
   await userEvent.type(guestsInput, '2');
@@ -101,10 +103,14 @@ test('Writes booking data to localStorage on form submission', async () => {
   await userEvent.type(emailInput, 'busayo@example.com');
   await userEvent.selectOptions(occasionSelect, 'Birthday');
 
+  await waitFor(() => {
+    expect(submitButton).not.toBeDisabled();
+  });
+
   await userEvent.click(submitButton);
 
   const expectedBooking = {
-    date: '2025-03-18',
+    date: '2025-03-20',
     time: '17:00',
     guests: 2,
     name: 'Busayo Adebayo',
@@ -153,15 +159,17 @@ test('Reads booking data from localStorage on initialization', async () => {
     expect(screen.getByRole('option', { name: /20:00/ })).toBeInTheDocument();
   });
 
-  const dateInput = screen.getByLabelText('Date:');
-  const timeSelect = screen.getByLabelText('Time:');
+  const dateInput = screen.getByLabelText(/Date:/i);
+  const timeSelect = screen.getByLabelText(/Time:/i);
   const guestsInput = screen.getByLabelText(/Number of Guests:/i);
-  const firstNameInput = screen.getByLabelText('First Name:');
-  const lastNameInput = screen.getByLabelText('Last Name:');
+  const firstNameInput = screen.getByLabelText(/First Name:/i);
+  const lastNameInput = screen.getByLabelText(/Last Name:/i);
   const phoneInput = screen.getByLabelText(/Phone Number:/i);
-  const emailInput = screen.getByLabelText('Email:');
-  const occasionSelect = screen.getByLabelText('Select Occasion:');
+  const emailInput = screen.getByLabelText(/Email:/i);
+  const occasionSelect = screen.getByLabelText(/Select Occasion:/i);
   const submitButton = screen.getByText('Make Your Reservation');
+
+  expect(submitButton).toBeDisabled();
 
   await userEvent.type(dateInput, '2025-03-20');
   await userEvent.selectOptions(timeSelect, '20:00');
@@ -172,6 +180,10 @@ test('Reads booking data from localStorage on initialization', async () => {
   await userEvent.type(phoneInput, '+2348012345678');
   await userEvent.type(emailInput, 'busayo@example.com');
   await userEvent.selectOptions(occasionSelect, 'Anniversary');
+
+  await waitFor(() => {
+    expect(submitButton).not.toBeDisabled();
+  });
 
   await userEvent.click(submitButton);
 
