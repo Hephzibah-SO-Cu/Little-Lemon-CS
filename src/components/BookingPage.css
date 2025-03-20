@@ -46,7 +46,13 @@ select {
 
 .error {
   color: #d32f2f;
-  font-size: 12px;
+  font-size: 0.875rem;
+  margin-top: 5px;
+  display: block;
+  background-color: #ffe6e6;
+  padding: 5px 10px;
+  border-radius: 3px;
+  border-left: 3px solid #d32f2f;
 }
 
 button {

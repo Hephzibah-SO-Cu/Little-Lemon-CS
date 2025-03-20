@@ -45,7 +45,6 @@ function Nav() {
       </ul>
       <button className="user-icon" aria-label="Open user menu">
         {/* Assuming an icon will be added here, e.g., a user profile icon */}
-        <span role="img" aria-hidden="true">👤</span>
       </button>
     </nav>
   );

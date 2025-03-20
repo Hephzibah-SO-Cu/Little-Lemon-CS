@@ -440,6 +440,16 @@ main > :not(:last-child) {
   border-radius: 5px;
 }
 
+/*Confirmation Page */
+.confirmed-booking {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 40px;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   /* Navbar */
